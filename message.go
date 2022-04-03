@@ -1,8 +1,6 @@
 package sbs1
 
 import (
-	"github.com/golang/geo/s1"
-	"github.com/golang/geo/s2"
 	"time"
 )
 
@@ -31,19 +29,20 @@ const (
 )
 
 type Message struct {
-	MessageType      MessageType
-	TransmissionType TransmissionType
-	SessionId        string
-	AircraftId       string
-	HexId            string
-	FlightId         string
-	Generated        time.Time
-	Logged           time.Time
-	Callsign         string
-	Altitude         int32
-	GroundSpeed      int32
-	Track            s1.Angle
-	Coordinates      s2.LatLng
-	VerticalRate     int16
-	Squawk           string
+	MessageType      MessageType `json:"messageType"`
+	TransmissionType TransmissionType `json:"transmissionType"`
+	SessionId        string `json:"sessionId"`
+	AircraftId       string `json:"aircraftId"`
+	HexId            string `json:"hexId"`
+	FlightId         string `json:"FlightId"`
+	Generated        time.Time `json:"generated"`
+	Logged           time.Time `json:"logged"`
+	Callsign         string `json:"callsign"`
+	Altitude         int32 `json:"altitude"`
+	GroundSpeed      int32 `json:"groundSpeed"`
+	Track            float64 `json:"track"`
+	Latitude      	 float64 `json:"latitude"`
+	Longitude		 float64 `json:"longitude"`
+	VerticalRate     int16 `json:"verticalRate"`
+	Squawk           string `json:"squawk"`
 }

@@ -3,8 +3,6 @@ package sbs1
 import (
 	"encoding/csv"
 	"errors"
-	"github.com/golang/geo/s1"
-	"github.com/golang/geo/s2"
 	"io"
 	"strconv"
 	"time"
@@ -134,7 +132,7 @@ func (r *Reader) parse(fields []string) (*Message, error) {
 			return nil, err
 		}
 
-		message.Track = s1.Angle(track) * s1.Degree
+		message.Track = track
 	}
 
 	if len(fields[14]) > 0 {
@@ -144,13 +142,15 @@ func (r *Reader) parse(fields []string) (*Message, error) {
 			return nil, err
 		}
 
+		message.Latitude = latitude
+
 		longitude, err := strconv.ParseFloat(fields[15], 64)
 
 		if err != nil {
 			return nil, err
 		}
 
-		message.Coordinates = s2.LatLngFromDegrees(latitude,longitude)
+		message.Longitude = longitude
 	}
 
 	if len(fields[16]) > 0 {
